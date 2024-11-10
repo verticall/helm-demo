@@ -1,0 +1,49 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: git-repo-guestbook-helm-parent
+  namespace: default
+spec:
+  interval: 5m0s
+  url: https://github.com/verticall/helm-demo.git
+  ref:
+    branch: main
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: guestbook-microservice-parent
+  namespace: default
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: ./guest-book/
+      sourceRef:
+        kind: GitRepository
+        name: git-repo-guestbook-helm-parent
+      valuesFiles: 
+        - ./values.yaml
+        # - ./helm-guestbook/values-production.yaml
+  test:
+    enable: false
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: guestbook-microservice-parent-develop
+  namespace: default
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: ./guest-book/
+      sourceRef:
+        kind: GitRepository
+        name: git-repo-guestbook-helm-parent
+      valuesFiles: 
+        - ./values-dev.yaml
+        # - ./helm-guestbook/values-production.yaml
+  test:
+    enable: false

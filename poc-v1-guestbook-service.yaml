@@ -16,7 +16,7 @@ metadata:
   name: guestbook-microservice
   namespace: default
 spec:
-  interval: 5m
+  interval: 1m
   chart:
     spec:
       chart: ./helm-guestbook/
