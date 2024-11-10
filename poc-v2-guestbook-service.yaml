@@ -5,7 +5,7 @@ metadata:
   name: git-repo-guestbook-helm-parent
   namespace: default
 spec:
-  interval: 5m0s
+  interval: 2m0s
   url: https://github.com/verticall/helm-demo.git
   ref:
     branch: main
@@ -24,7 +24,7 @@ spec:
         kind: GitRepository
         name: git-repo-guestbook-helm-parent
       valuesFiles: 
-        - ./values.yaml
+        - ./guest-book/values.yaml
         # - ./helm-guestbook/values-production.yaml
   test:
     enable: false
@@ -43,7 +43,7 @@ spec:
         kind: GitRepository
         name: git-repo-guestbook-helm-parent
       valuesFiles: 
-        - ./values-dev.yaml
+        - ./guest-book/values-dev.yaml
         # - ./helm-guestbook/values-production.yaml
   test:
     enable: false
