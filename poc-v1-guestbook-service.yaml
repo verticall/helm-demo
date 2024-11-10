@@ -17,6 +17,8 @@ metadata:
   namespace: default
 spec:
   interval: 1m
+  driftDetection:
+    mode: enabled
   chart:
     spec:
       chart: ./helm-guestbook/
@@ -26,5 +28,6 @@ spec:
       valuesFiles: 
         - ./helm-guestbook/values.yaml
         - ./helm-guestbook/values-production.yaml
+      reconcileStrategy: Revision
   test:
     enable: true

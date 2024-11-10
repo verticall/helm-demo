@@ -17,6 +17,8 @@ metadata:
   namespace: default
 spec:
   interval: 1m
+  driftDetection:
+    mode: enabled
   chart:
     spec:
       chart: ./guest-book/
@@ -26,6 +28,7 @@ spec:
       valuesFiles: 
         - ./guest-book/values.yaml
         # - ./helm-guestbook/values-production.yaml
+      reconcileStrategy: Revision
   test:
     enable: false
 ---
@@ -35,6 +38,8 @@ metadata:
   name: guestbook-microservice-parent-develop
   namespace: default
 spec:
+  driftDetection:
+    mode: enabled
   interval: 1m
   chart:
     spec:
@@ -45,5 +50,6 @@ spec:
       valuesFiles: 
         - ./guest-book/values-dev.yaml
         # - ./helm-guestbook/values-production.yaml
+      reconcileStrategy: Revision
   test:
     enable: false
