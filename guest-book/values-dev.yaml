@@ -1,5 +1,5 @@
 backend:
-  replicaCount: 0
+  replicaCount: 2
   image:
     repository: gcr.io/heptio-images/ks-guestbook-demo
     pullPolicy: IfNotPresent
@@ -7,4 +7,4 @@ backend:
     tag: "0.1"
 
 webapp:
-  replicaCount: 0
+  replicaCount: 2
