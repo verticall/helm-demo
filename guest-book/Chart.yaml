@@ -1,0 +1,12 @@
+apiVersion: v2
+name: app01
+description: A Helm chart is for app01 which contains FE, BE
+version: 0.1.0
+appVersion: 1.0.0
+dependencies:
+  - name: webapp
+    version: "0.1.0"
+    repository: "file://./charts/webapp"
+  - name: backend
+    version: "0.1.0"
+    repository: "file://./charts/backend"
